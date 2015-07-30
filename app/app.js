@@ -6,7 +6,9 @@ angular.module('myApp', [
   'myApp.view1',
   'myApp.view2',
   'myApp.version',
-  'urvemans.urvebutton-directive'
+  'urvemans.urvebutton-directive',
+  'ui.bootstrap',
+  'chart.js'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/view1'});

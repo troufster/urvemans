@@ -1,4 +1,6 @@
-<div style="padding: 10px 10px 10px 10px;background-color: #a5fffd;float:left;">
+<div style="padding: 10px 10px 10px 10px;background-color: #a5fffd;float:left;width:40%">
+    <progressbar value="state.tick" type="danger">Löneperioden!</progressbar>
+    <progressbar value="100 - (state.upsdecay * 100)" >Bitterhet</progressbar>
 
     <div style="float:left;background-color: greenyellow">
         <button urve-button>urv</button>
@@ -6,25 +8,31 @@
     <div style="width:100%;float:left;background-color: darkseagreen">
         <div style="float:left">Urve:</div>
         <div style="float:left;padding-left:10px;width:100px">{{state.urve}}</div>
-        <div style="float:left">UPS</div>
+        <div style="float:left">UPS:</div>
         <div style="float:left;padding-left:10px;width:100px">{{state.ups}}</div>
-        <div style="width:200px;float:left;background-color: #0088cc">
+        <div style="float:left">Löner:</div>
+        <div style="float:left;padding-left:10px;width:100px">{{state.salary}}</div>
+
+        <div style="width:100%;float:left;background-color: #0088cc">
             Anställ urveslavar:
 
             <div style="cursor: pointer;width:200px;height: 30px;" ng-repeat="e in employable"
-                    ng-show="state.totalurve > e.limit"
+                    ng-show="state.totalurve >= e.limit"
                     ng-click="hire($index)">{{e.name}} {{e.cost}}({{e.pay}}) <div style="float:right">{{employees[$index]}}</div></div>
 
         </div>
 
-
+        <div style="float:left;width:100%;background-color: #cc9dff">
+            Det totala ersättningspaketet:
+            <div style ="cursor:pointer" ng-repeat="u in upgrades" ng-click="upgrade($index)">{{u.name}} {{state.employees*u.cost}}</div>
+        </div>
     </div>
-
-    <div style="width:100%;float:left">
-
-
-    </div>
-
 
 
 </div>
+<div style="width:50%;float:left;">
+    <canvas id="line" class="chart chart-line" data="data"
+            labels="labels" legend="true" series="series">
+    </canvas>
+</div>
+
